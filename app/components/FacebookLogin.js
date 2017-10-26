@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import {StyleSheet, Text, View, Button, fetch} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { UserService } from '../services/User.service';
+import { User } from '../shared/user/User';
 
 export default class FacebookLogin extends Component {
+    userService = new UserService();
+
     constructor(props) {
         super(props);
         this.state = { username: ''};
@@ -16,7 +20,8 @@ export default class FacebookLogin extends Component {
         if (type === 'success') {
             // Get the user's name using Facebook's Graph API
             const response = await fetch(`https://graph.facebook.com/me?access_token=${token}`);
-            console.log(response.json());
+            console.log(response);
+            let user: User = this.userService.getUserById(response.id);
         }
     };
 
