@@ -11,6 +11,7 @@ export default class FacebookLogin extends Component {
 
     login = async function logIn() {
         let userService = new UserService();
+        const { navigate } = this.props.navigation;
         const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync('342498269493972', {
             permissions: ['public_profile'],
         });
@@ -21,13 +22,14 @@ export default class FacebookLogin extends Component {
             let responseJSON = await response.json();
             console.log(responseJSON.id);
             let user = userService.getUserByFacebookId(Number(responseJSON.id));
+            navigate('Profile', { user: user});
         }
     };
 
     render() {
         return (
             <View style={styles.header}>
-                <Icon.Button name="facebook" backgroundColor="#3b5998" onPress={this.login}>
+                <Icon.Button name="facebook" backgroundColor="#3b5998" onPress={() => this.login}>
                     Sign up with Facebook
                 </Icon.Button>
                 <Text>{this.state.username}</Text>

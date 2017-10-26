@@ -39,7 +39,7 @@ export default class Profile extends Component {
         };
         // Pull navigate out of this.props.navigation
         // and params out of this.props.navigation.state
-        const { navigate, state: { params } } = this.props.navigation;
+        const { params } = this.props.navigation.state;
         let profile = {
             name: params.user
         };
