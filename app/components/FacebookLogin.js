@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {StyleSheet, Text, View, Button, fetch} from 'react-native';
+import {StyleSheet, Text, View, Button} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { UserService } from '../services/User.service';
 import { User } from '../shared/user/User';
