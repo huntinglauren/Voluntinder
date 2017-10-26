@@ -8,14 +8,16 @@ export class UserService {
         this.usersDB = [];
         // Initialize Firebase
         var config = {
-            apiKey: "AIzaSyA1ES9CmgL9poZdc3t0Pi4cZzEN9OA1KDo",
-            authDomain: "voluntinder-43c96.firebaseapp.com",
-            databaseURL: "https://voluntinder-43c96.firebaseio.com",
+            apiKey: "AIzaSyCHxC95MUD1sYFx2Dg3QRvkYH_VwB_1xfo",
+            authDomain: "voluntinder-43b32.firebaseapp.com",
+            databaseURL: "https://voluntinder-43b32.firebaseio.com",
             projectId: "voluntinder-43c96",
             storageBucket: "",
-            messagingSenderId: "551611584503"
+            messagingSenderId: "922754178032"
         };
-        firebase.initializeApp(config);
+        if(!firebase.apps.length) {
+            firebase.initializeApp(config);
+        }
 
         this.itemsRef = firebase.database().ref();
         this.state = { username: '', password: ''};
@@ -39,9 +41,14 @@ export class UserService {
         this.usersDB.push(new User('Melissa Feather', 683210195161618));
 
         // load our peeps into db
-        this.usersDB.forEach((user) => {
-            console.log('pushing user to db user=', JSON.stringify(user));
-            this.itemsRef.push({ name: user.name, facebookId: user.facebookId });
-        });
+        // this.usersDB.forEach((user) => {
+        //     console.log('pushing user to db user=', JSON.stringify(user));
+        //     this.itemsRef.push({ name: user.name, facebookId: user.facebookId });
+        // });
+    }
+
+    saveProfile(user) {
+        console.log('>>>>> saving profile user=', user);
+        this.itemsRef.push({ username: user.username, bio: user.bio, city: user.city });
     }
 }

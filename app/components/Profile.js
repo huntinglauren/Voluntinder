@@ -11,7 +11,6 @@ import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 export default class Profile extends Component {
     constructor(props){
         super(props);
-
         this.state = {
             friends: 1098,
             npClient: {
@@ -19,7 +18,6 @@ export default class Profile extends Component {
                 description: 'We save animals',
                 location: '123 save animals lane, Austin TX',
                 interests: [{activity: 'animals', icon: (<Icon name="paw" color="#4F8EF7" />)}, {activity: 'running', icon: (<Icon name="run-fast" color="#4F8EF7" />)}]
-
             }
         }
 

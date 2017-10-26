@@ -46,6 +46,10 @@ export default class Login extends Component {
                     onPress={() => navigate('Profile', { user: this.state.username })}
                     title="Create Account"
                 />
+                <Button
+                    onPress={() => navigate('EditProfile', { user: this.state.username })}
+                    title="Edit Profile"
+                />
                 <FacebookLogin navigation={this.props.navigation}/>
             </ScrollView>
         </View>
