@@ -11,7 +11,6 @@ import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 export default class Profile extends Component {
     constructor(props){
         super(props);
-
         this.state = {
             friends: 1098,
             npClient: {
@@ -19,7 +18,6 @@ export default class Profile extends Component {
                 description: 'We save animals',
                 location: '123 save animals lane, Austin TX',
                 interests: [{activity: 'animals', icon: (<Icon name="paw" color="#4F8EF7" />)}, {activity: 'running', icon: (<Icon name="run-fast" color="#4F8EF7" />)}]
-
             }
         }
 
@@ -41,12 +39,17 @@ export default class Profile extends Component {
         // and params out of this.props.navigation.state
         const { params } = this.props.navigation.state;
         let profile = {
-            name: params.user
+            user: params.user
         };
 
         return (
             <View style={{flex:1}}>
                 <ScrollView style={styles.container}>
+                    <View style ={styles.commons}>
+                        <Text style = {styles.title}>
+                            {profile.user.name}
+                        </Text>
+                    </View>
                     <Image source ={pic} resizeMode="stretch" style={{height:350, width:400, alignItems: 'center'}} />
                     <View style={[styles.row, {marginTop:15}]}>
                         <Text style = {{fontSize:19, fontWeight:'400'}}>APA!,</Text><Text style={{fontSize:21, fontWeight:'300', marginBottom:-2}}>Austin Pets Alive</Text>

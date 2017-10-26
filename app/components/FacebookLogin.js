@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import {StyleSheet, Text, View, Button} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { UserService } from '../services/User.service';
 
 export default class FacebookLogin extends Component {
     constructor(props) {
@@ -9,6 +10,7 @@ export default class FacebookLogin extends Component {
     }
 
     login = async function logIn() {
+        let userService = new UserService();
         const { navigate } = this.props.navigation;
         const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync('342498269493972', {
             permissions: ['public_profile'],
@@ -17,8 +19,10 @@ export default class FacebookLogin extends Component {
         if (type === 'success') {
             // Get the user's name using Facebook's Graph API
             const response = await fetch(`https://graph.facebook.com/me?access_token=${token}`);
-            console.log(response.json());
-            navigate('Profile', { user: 'Kevin'});
+            let responseJSON = await response.json();
+            console.log(responseJSON.id);
+            let user = userService.getUserByFacebookId(Number(responseJSON.id));
+            navigate('Profile', { user: user});
         }
     };
 
