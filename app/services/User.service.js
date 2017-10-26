@@ -32,7 +32,7 @@ export class UserService {
     }
 
     populateDb() {
-        this.usersDB.push(new User('Louis Pujol', 1314119188601872));
+        this.usersDB.push(new User('Louis Pujol', 2028087690538348));
         this.usersDB.push(new User('Lauren Hunter', 746452268710522));
         this.usersDB.push(new User('Kevin Fung', 10110613385053150));
         this.usersDB.push(new User('Kevin Hutson', 501938162));
