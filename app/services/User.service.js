@@ -8,9 +8,9 @@ export class UserService {
         this.populateDb();
     }
 
-    getUserById(targetId: number) {
+    getUserByFacebookId(targetId: number) {
         for (let user of this.usersDB) {
-            if (user.id === targetId) {
+            if (user.facebookId === targetId) {
                 return user;
             }
         }

@@ -1,3 +1,9 @@
 export class User {
-    constructor(name: string, id: number) {}
+    name: string;
+    facebookId: number;
+
+    constructor(name: string, facebookId: number) {
+        this.name = name;
+        this.facebookId = facebookId;
+    }
 }
