@@ -8,6 +8,7 @@ export class UserService {
     }
 
     private populateDb() {
+        //TODO: Update IDs with actual FB Ids
         this.usersDb.push(new User('Louis Pujol', 1));
         this.usersDb.push(new User('Lauren Hunter', 746452268710522));
         this.usersDb.push(new User('Kevin Fung', 2));
