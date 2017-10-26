@@ -10,18 +10,6 @@ export default class Login extends Component {
         this.state = { username: '', password: ''};
     }
 
-    login = async function logIn() {
-        const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync('342498269493972', {
-            permissions: ['public_profile'],
-        });
-
-        if (type === 'success') {
-            // Get the user's name using Facebook's Graph API
-            const response = await fetch(`https://graph.facebook.com/me?access_token=${token}`);
-            console.log(response.json());
-        }
-    };
-
     static navigationOptions = {
         title: 'Voluntinder'
     };
@@ -58,7 +46,7 @@ export default class Login extends Component {
                     onPress={() => navigate('Profile', { user: this.state.username })}
                     title="Create Account"
                 />
-                <FacebookLogin/>
+                <FacebookLogin navigation={this.props.navigation}/>
             </ScrollView>
         </View>
         );
