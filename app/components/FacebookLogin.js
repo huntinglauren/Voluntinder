@@ -30,7 +30,7 @@ export default class FacebookLogin extends Component {
         return (
             <View style={styles.header}>
                 <Icon.Button name="facebook" backgroundColor="#3b5998" onPress={() => this.login()}>
-                    Sign up with Facebook
+                    Login with Facebook
                 </Icon.Button>
                 <Text>{this.state.username}</Text>
             </View>
