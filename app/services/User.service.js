@@ -25,7 +25,7 @@ export class UserService {
 
     getUserByFacebookId(targetId: number) {
         return new Promise( function(resolve) {
-            firebase.database().ref('users/' + targetId).on('value', snap => {
+            firebase.database().ref('usersByFacebookId/' + targetId).on('value', snap => {
                 var returnedUser = snap.toJSON();
                 resolve(new User(returnedUser.name, targetId, returnedUser.age, returnedUser.city, returnedUser.state, returnedUser.headline));
             });
