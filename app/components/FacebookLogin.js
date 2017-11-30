@@ -20,9 +20,9 @@ export default class FacebookLogin extends Component {
             // Get the user's name using Facebook's Graph API
             const response = await fetch(`https://graph.facebook.com/me?access_token=${token}`);
             let responseJSON = await response.json();
-            console.log(responseJSON.id);
-            let user = userService.getUserByFacebookId(Number(responseJSON.id));
-            navigate('Profile', { user: user});
+            userService.getUserByFacebookId(Number(responseJSON.id)).then((user) => {
+                navigate('Profile', { user: user});
+            });
         }
     };
 
