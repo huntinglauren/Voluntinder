@@ -1,17 +1,24 @@
 export class User {
     name: string;
-    facebookId: number;
-    age: number;
+    token: string;
+    id: number;
+    age: string;
+    gender: string;
+    email: string;
     city: string;
-    state: string;
-    headline: string;
+    about: string;
+    profile_picture: any;
 
-    constructor(name: string, facebookId: number, age: number, city: string, state: string, headline: string) {
-        this.name = name;
-        this.facebookId = facebookId;
-        this.age = age;
-        this.city = city;
-        this.state = state;
-        this.headline = headline;
+    constructor(response: any) {
+        console.log('USER: ', response);
+        this.name = response.name;
+        this.token = response.token;
+        this.id = response.id;
+        this.age = `> ${response.age_range.min.toString()}`;
+        this.gender = response.gender;
+        this.email = response.email ? response.email : '';
+        this.city = response.hometown.name ? response.hometown.name: '';
+        this.about = response.about ? response.about : '';
+        this.profile_picture = {uri: response.picture.data.url};
     }
 }

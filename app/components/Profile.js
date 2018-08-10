@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-    Button,
     StyleSheet,
     Text,
     View,
@@ -30,51 +29,41 @@ export default class Profile extends Component {
         },
     };
 
+    getGenderIcon(gender: string) {
+        if (gender.localeCompare('female') === 0) {
+            return {icon: (<Icon name="gender-female" color="#4F8EF7" />)}
+        } else {
+            return {icon: (<Icon name="gender-male" color="#4F8EF7" />)}
+        }
+    }
 
     render() {
-        let pic = {
-            uri: "https://www.austinpetsalive.org/wp-content/uploads/2014/05/APA-Final1.jpg"
-        };
         // Pull navigate out of this.props.navigation
         // and params out of this.props.navigation.state
         const { params } = this.props.navigation.state;
         let profile = {
-            user: params.user
+            user: params.user,
+            gender: this.getGenderIcon(params.user.gender)
         };
 
         return (
             <View style={{flex:1}}>
                 <ScrollView style={styles.container}>
-                    <View style ={styles.commons}>
-                        <Text style = {styles.title}>
-                            {profile.user.name}
-                        </Text>
-                    </View>
-                    <Image source ={pic} resizeMode="stretch" style={{height:350, width:400, alignItems: 'center'}} />
+                    <Image source ={profile.user.profile_picture} resizeMode="stretch" style={{height:350, width:400, alignItems: 'center'}} />
                     <View style={[styles.row, {marginTop:15}]}>
-                        <Text style = {{fontSize:19, fontWeight:'400'}}>APA!,</Text><Text style={{fontSize:21, fontWeight:'300', marginBottom:-2}}>Austin Pets Alive</Text>
+                        <Text style = {{fontSize:19, fontWeight:'400'}}>{profile.user.name}</Text><Text style={{fontSize:21, fontWeight:'300', marginBottom:-2}}>    {profile.user.age}</Text><Text>  {profile.gender.icon}</Text>
                     </View>
                     <View style={styles.row}>
-                        <Text style={{color:'#444', fontSize:15}}>{this.state.npClient.location}</Text>
+                        <Text style={{color:'#444', fontSize:15}}>{profile.user.city}</Text>
                     </View>
                     <View style={styles.description}>
-                        <Text style={{color:'#555'}}>{this.state.npClient.description}</Text>
+                        <Text style={{color:'#555'}}>{profile.user.about}</Text>
                     </View>
                     <View style ={styles.commons}>
                         <Text style = {styles.title}>
                             Interests
                         </Text>
                         <Text style={{marginTop:10, fontSize:14, color:'#666', fontWeight:"400"}}>{this.state.npClient.interests[0].activity} {this.state.npClient.interests[0].icon} {this.state.npClient.interests[1].activity} {this.state.npClient.interests[1].icon}</Text>
-                    </View>
-                    <View style ={styles.commons}>
-                        <Text style = {styles.title}>
-                            Facebook Photos
-                        </Text>
-                    </View>
-                    <View style ={styles.commons}>
-                        <Text style = {styles.title}>
-                            Events
-                        </Text>
                     </View>
                 </ScrollView>
             </View>
@@ -86,7 +75,6 @@ export default class Profile extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-
         backgroundColor: '#f7f7f7',
     },
     row: {

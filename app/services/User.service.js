@@ -27,12 +27,15 @@ export class UserService {
         return new Promise( function(resolve) {
             firebase.database().ref('usersByFacebookId/' + targetId).on('value', snap => {
                 var returnedUser = snap.toJSON();
-                resolve(new User(returnedUser.name, targetId, returnedUser.age, returnedUser.city, returnedUser.state, returnedUser.headline));
+                console.log(returnedUser);
+                console.log(returnedUser.name);
+                resolve(new User(returnedUser.name, targetId, returnedUser.email, returnedUser.picture, returnedUser.state, returnedUser.headline));
             });
         });
     }
 
-    saveProfile(user) {
+    saveProfile(responseJson) {
+        let newUser = new User(responseJson.name, responseJson.id, responseJson.email);
         this.itemsRef.child(user.facebookId).set({
             name: user.name,
             age: user.age,
